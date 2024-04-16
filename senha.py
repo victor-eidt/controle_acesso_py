@@ -70,3 +70,5 @@ def aut(usuarios):
 def menu_usuario():
     
     selecao = input("What's the move?\n(1) listar arquivos\n(2) criar arquivo\n(3) ler arquivo\n(4) excluir arquivo\n(5) executar arquivo\n(6) Desbloquear Usuário\n(7) sair\nDigite uma opção: ")
+    
+menu_inicial()
