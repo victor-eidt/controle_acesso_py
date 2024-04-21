@@ -34,10 +34,5 @@
             "main.c"
         ],
         "admin": false
-    },
-    "kinito": {
-        "ler": [
-            "main.c"
-        ]
     }
 }

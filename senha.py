@@ -3,7 +3,6 @@ import json
 from getpass import getpass
 import os
 import time
-import pprint
 
 with open("usuarios.txt", "r") as arquivo:
     linhas = arquivo.readlines()
@@ -163,45 +162,49 @@ def menu_usuario(nome_usuario):
                     
             case 3:
                 
-                arquivo_selecionado = input("Qual arquivo você deseja ler? ")
-                
-                if 'ler' in permissoes[nome_usuario]:
+                arquivo_selecionado = input("Qual arquivo vc deseja ler? ")
+
+                if (permissoes.get(nome_usuario).get('ler')) == [arquivo_selecionado]:
                     print("Acesso permitido.....")
-                elif 'ler' not in permissoes[nome_usuario]:
+                    
+                elif (permissoes.get(nome_usuario).get('ler')) != [arquivo_selecionado]:
                     print("Acesso negado....")
                 
                 time.sleep(1)
                 
             case 4:
                 
-                arquivo_selecionado = input("Qual arquivo você deseja escrever? ")
-                
-                if 'escrever' in permissoes[nome_usuario]:
+                arquivo_selecionado = input("Qual arquivo vc deseja escrever? ")
+
+                if (permissoes.get(nome_usuario).get('escrever')) == [arquivo_selecionado]:
                     print("Acesso permitido.....")
-                elif 'escrever' not in permissoes[nome_usuario]:
+                    
+                elif (permissoes.get(nome_usuario).get('escrever')) != [arquivo_selecionado]:
                     print("Acesso negado....")
                 
                 time.sleep(1)
                     
             case 5:
                 
-                arquivo_selecionado = input("Qual arquivo você deseja apagar? ")
-                
-                if 'apagar' in permissoes[nome_usuario]:
-                    print("Acesso permitido....")
-                elif 'apagar' not in permissoes[nome_usuario]:
-                    print("Acesso negado.....")
+                arquivo_selecionado = input("Qual arquivo vc deseja apagar? ")
+
+                if (permissoes.get(nome_usuario).get('apagar')) == [arquivo_selecionado]:
+                    print("Acesso permitido.....")
+                    
+                elif (permissoes.get(nome_usuario).get('apagar')) != [arquivo_selecionado]:
+                    print("Acesso negado....")
                 
                 time.sleep(1)
             
             case 6:
                 
                 arquivo_selecionado = input("Qual arquivo você deseja executar? ")
-                
-                if 'exec' in permissoes[nome_usuario]:
+
+                if (permissoes.get(nome_usuario).get('executar')) == [arquivo_selecionado]:
                     print("Acesso permitido.....")
-                elif 'exec' not in permissoes[nome_usuario]:
-                    print("Acesso negado.....")
+                
+                elif (permissoes.get(nome_usuario).get('executar')) != [arquivo_selecionado]:
+                    print("Acesso negado....")
                     
                 time.sleep(1)
             
@@ -214,8 +217,10 @@ def menu_usuario(nome_usuario):
                     if unblockuser == 's' or unblockuser == 'S':
                         with open("tentativas.txt","w") as arquivo:
                             arquivo.write("")
+                        print("Todos os usuários foram desbloqueados")
                     
                     elif unblockuser == 'n' or unblockuser == 'N':
+                        print("Operação cancelada")
                         continue
                 elif permissoes.get(nome_usuario).get("admin") == False:
                     print("Apenas admins têm acesso à esta feature!")
