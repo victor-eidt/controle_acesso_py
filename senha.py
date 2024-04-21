@@ -3,6 +3,7 @@ import json
 from getpass import getpass
 import os
 import time
+import pprint
 
 with open("usuarios.txt", "r") as arquivo:
     linhas = arquivo.readlines()
@@ -32,11 +33,11 @@ def ler_tentativas():
     except FileNotFoundError:
         tentativas = []
         
-    tentativas_limpa = []  # Cria uma lista vazia para armazenar os resultados
-    for t in tentativas:   # Loop através de cada item na lista 'tentativas'
-        tentativa_limpa = t.strip()  # Remove espaços em branco do início e do fim de cada item
-        tentativas_limpa.append(tentativa_limpa)  # Adiciona o item processado à lista nova
-
+    tentativas_limpa = []  
+    for t in tentativas:   
+        tentativa_limpa = t.strip()
+        tentativas_limpa.append(tentativa_limpa) 
+        
     return tentativas_limpa
 
 def registrar_tentativa(login):
@@ -134,7 +135,7 @@ def menu_usuario(nome_usuario):
     
     while True:
         try:
-            selecao = int(input("What's the move?\n(1) listar arquivos\n(2) criar arquivo\n(3) ler arquivo\n(4) escrever arquivo\n(5) apagar arquivo\n(6) executar arquivo\n(7) Desbloquear Usuário\n(8) sair\nDigite uma opção: "))
+            selecao = int(input("What's the move?\n(1) listar arquivos\n(2) criar arquivo\n(3) ler arquivo\n(4) escrever arquivo\n(5) apagar arquivo\n(6) executar arquivo\n(7) Desbloquear Usuário\n(8) Sair\nDigite uma opção: "))
         except ValueError:
             print("Por favor, insira um número válido.")
             continue
@@ -220,7 +221,7 @@ def menu_usuario(nome_usuario):
                     print("Apenas admins têm acesso à esta feature!")
                 
                 time.sleep(1)
-                    
+                
             case 8:
                 print("We out...")
                 time.sleep(1)
