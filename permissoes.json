@@ -1,21 +1,43 @@
 {
-    "vitinho": [
-        "ler",
-        "escrever",
-        "apagar",
-        "exec",
-        "admin"
-    ],
-    "giordano": [
-        "ler",
-        "escrever",
-        "apagar",
-        "exec"
-    ],
-    "linux": [
-        "ler"
-    ],
-    "enio": [
-        "apagar"
-]
+    "vitinho": {
+        "ler": [
+            "main.c"
+        ],
+        "escrever": [
+            "main.c"
+        ],
+        "apagar": [
+            "main.c"
+        ],
+        "exec": [
+            "main.c"
+        ],
+        "admin": true
+    },
+    "giordano": {
+        "ler": [
+            "main.c"
+        ],
+        "escrever": [
+            "main.c"
+        ],
+        "apagar": [
+            "main.c"
+        ],
+        "exec": [
+            "main.c"
+        ],
+        "admin": false
+    },
+    "linux": {
+        "ler": [
+            "main.c"
+        ],
+        "admin": false
+    },
+    "kinito": {
+        "ler": [
+            "main.c"
+        ]
+    }
 }

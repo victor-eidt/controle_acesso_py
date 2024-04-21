@@ -1,26 +1,8 @@
 import json
-import os
 
-def carregar_permissoes():
-
-    with open("permissoes.json", "r") as arquivo:
-        return json.load(arquivo)
+def carregar_json():
+    with open("teste.json","r") as permissoes:
         
-permissoes = carregar_permissoes()
+        return json.load(permissoes)
 
-print(permissoes["enio"])
-print(permissoes)
-
-if 'ler' in permissoes["enio"]:
-    print("enio tem permissão pra escrever")
-
-elif 'ler' not in permissoes["enio"]:
-    print("enio não tem permissão")
-    
-else:
-    print("não caiu nos ifs, erro")
-    
-diretorio_atual = os.getcwd()
-
-arquivos = os.listdir(diretorio_atual)
-print(arquivos)
+permissoes = carregar_json()

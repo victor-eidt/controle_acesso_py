@@ -91,7 +91,7 @@ def cadastro(usuarios):
         
                 arquivo.write(f"\n{nome_usuario},{senha_usuario}")
                 
-            permissoes[nome_usuario] = ["ler"]
+            permissoes[nome_usuario] = {"ler": ['main.c']}
 
             salvar_permissoes(permissoes)
         
@@ -206,8 +206,9 @@ def menu_usuario(nome_usuario):
             
             case 7:
                 
-                if 'admin' in permissoes[nome_usuario]:
-                    unblockuser = input("tem certeza que deseja desbloquear todos usuários bloqueados? s/n")
+                if permissoes.get(nome_usuario).get("admin") == True:
+                    
+                    unblockuser = input("Tem certeza que deseja desbloquear todos usuários bloqueados? s/n ")
                     
                     if unblockuser == 's' or unblockuser == 'S':
                         with open("tentativas.txt","w") as arquivo:
@@ -215,8 +216,8 @@ def menu_usuario(nome_usuario):
                     
                     elif unblockuser == 'n' or unblockuser == 'N':
                         continue
-                elif 'admin' not in permissoes[nome_usuario]:
-                    print("apenas admins têm acesso à esta feature!")
+                elif permissoes.get(nome_usuario).get("admin") == False:
+                    print("Apenas admins têm acesso à esta feature!")
                 
                 time.sleep(1)
                     
