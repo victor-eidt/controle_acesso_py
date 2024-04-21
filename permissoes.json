@@ -1,0 +1,21 @@
+{
+    "vitinho": [
+        "ler",
+        "escrever",
+        "apagar",
+        "exec",
+        "admin"
+    ],
+    "giordano": [
+        "ler",
+        "escrever",
+        "apagar",
+        "exec"
+    ],
+    "linux": [
+        "ler"
+    ],
+    "enio": [
+        "apagar"
+]
+}
