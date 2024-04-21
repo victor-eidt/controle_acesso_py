@@ -20,10 +20,17 @@ def ler_tentativas():
     except FileNotFoundError:
         tentativas = []
         
-    return [t.strip() for t in tentativas]
+    tentativas_limpa = []  # Cria uma lista vazia para armazenar os resultados
+    for t in tentativas:   # Loop através de cada item na lista 'tentativas'
+        tentativa_limpa = t.strip()  # Remove espaços em branco do início e do fim de cada item
+        tentativas_limpa.append(tentativa_limpa)  # Adiciona o item processado à lista nova
+
+    return tentativas_limpa
 
 def registrar_tentativa(login):
+    
     with open("tentativas.txt", "a") as arquivo:
+        
         arquivo.write(f"{login}\n")
         
 def menu_inicial():
@@ -33,7 +40,7 @@ def menu_inicial():
     match selecao:
 
         case 1:
-            "cadastro()"
+            cadastro(usuarios)
             
         case 2:
             aut(usuarios)
@@ -41,6 +48,35 @@ def menu_inicial():
         case 3:
             exit
             
+def cadastro(usuarios):
+    
+    for i in range(3):
+        nome_usuario = input("Digite o seu nome de registro: ")
+        senha_usuario = getpass("Digite a sua senha: ")
+        confirmar_senha = getpass("Confirme sua senha: ")
+
+        usuario_encontrado = False
+
+        for nome, _ in usuarios:
+            if nome == nome_usuario:
+                usuario_encontrado = True
+                break
+            
+        if senha_usuario == confirmar_senha and usuario_encontrado == False:
+            
+            with open("usuarios.txt", "a") as arquivo:
+        
+                arquivo.write(f"\n{nome_usuario},{senha_usuario}")
+        
+            print("Cadastro realizado com sucesso!")
+            
+            break
+        
+        elif senha_usuario != confirmar_senha:
+            print("Passwords didn't match! Try again")
+                
+        elif usuario_encontrado == True:
+            print("Usuário já existe.")
             
 def aut(usuarios):
     tentativas = ler_tentativas()
