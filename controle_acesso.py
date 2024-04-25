@@ -26,7 +26,7 @@ def salvar_permissoes(permissoes):
 def ler_tentativas():
     
     try:
-        with open("tentativas.txt", "r") as arquivo:
+        with open("blockedusers.txt", "r") as arquivo:
             tentativas = arquivo.readlines()
             
     except FileNotFoundError:
@@ -41,7 +41,7 @@ def ler_tentativas():
 
 def registrar_tentativa(login):
     
-    with open("tentativas.txt", "a") as arquivo:
+    with open("blockedusers.txt", "a") as arquivo:
         
         arquivo.write(f"{login}\n")
         
@@ -215,7 +215,7 @@ def menu_usuario(nome_usuario):
                     unblockuser = input("Tem certeza que deseja desbloquear todos usuários bloqueados? s/n ")
                     
                     if unblockuser == 's' or unblockuser == 'S':
-                        with open("tentativas.txt","w") as arquivo:
+                        with open("blockedusers.txt","w") as arquivo:
                             arquivo.write("")
                         print("Todos os usuários foram desbloqueados")
                     

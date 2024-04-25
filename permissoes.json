@@ -34,5 +34,10 @@
             "main.c"
         ],
         "admin": false
+    },
+    "victor": {
+        "ler": [
+            "main.c"
+        ]
     }
 }
