@@ -39,5 +39,10 @@
         "ler": [
             "main.c"
         ]
+    },
+    "lind": {
+        "ler": [
+            "main.c"
+        ]
     }
 }

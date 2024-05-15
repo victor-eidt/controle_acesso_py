@@ -3,6 +3,7 @@ import json
 from getpass import getpass
 import os
 import time
+from hashlib import sha256
 
 with open("usuarios.txt", "r") as arquivo:
     linhas = arquivo.readlines()
@@ -77,6 +78,9 @@ def cadastro(usuarios):
         nome_usuario = input("Digite o seu nome de registro: ")
         senha_usuario = getpass("Digite a sua senha: ")
         confirmar_senha = getpass("Confirme sua senha: ")
+        
+        senha_cod = senha_usuario.lower().encode()
+        senha_hash = sha256(senha_cod).hexdigest()
 
         usuario_encontrado = False
 
@@ -85,11 +89,11 @@ def cadastro(usuarios):
                 usuario_encontrado = True
                 break
             
-        if senha_usuario == confirmar_senha and usuario_encontrado == False:
+        if senha_usuario == confirmar_senha and usuario_encontrado == False and len(nome_usuario) <= 4 and len(senha_usuario) <= 4:
             
             with open("usuarios.txt", "a") as arquivo:
         
-                arquivo.write(f"\n{nome_usuario},{senha_usuario}")
+                arquivo.write(f"\n{nome_usuario},{senha_hash}")
                 
             permissoes[nome_usuario] = {"ler": ['main.c']}
 
@@ -105,12 +109,18 @@ def cadastro(usuarios):
         elif usuario_encontrado == True:
             print("Usuário já existe.")
             
+        elif len(senha_usuario) > 4 or len(nome_usuario) > 4:
+            print("Usuário ou senha com muitos caracteres (máximo 4 permitidos).")
+            
 def aut(usuarios):
     tentativas = ler_tentativas()
 
     for i in range(5):
         login = input("Digite o seu nome: ")
         senha = getpass("Digite a sua senha: ")
+        
+        senha_cod = senha.lower().encode()
+        senha_hash = sha256(senha_cod).hexdigest()
 
         tentativas_usuario = tentativas.count(login)
 
@@ -118,7 +128,7 @@ def aut(usuarios):
             print("Conta bloqueada temporariamente.")
             break
 
-        if (login, senha) in usuarios:
+        if (login, senha_hash) in usuarios:
             print(f"Seja bem vindo, {login}")
             menu_usuario(login)
             break
